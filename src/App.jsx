@@ -1,13 +1,14 @@
 import Home from './Pages/Home';
+import Header from './components/Header';
+import OrderForm from './components/OrderForm/OrderForm';
 import './App.css';
 
 function App() {
   return (
-    <div>
-      <h1>Headr</h1>
-      <h1>Breadcrump</h1>
-      <h1>Diğer</h1>
-    </div>
+    <>
+      <Header></Header>
+      <OrderForm />
+    </>
   );
 }
 
