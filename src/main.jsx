@@ -4,14 +4,12 @@ import App from './App.jsx';
 import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import Home from './Pages/Home';
+import OrderCompleted from './Pages/OrderCompleted.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Routes>
-      <Route path='/' element={<Home />} />
-    </Routes>
-    <Routes>
-      <Route path='/OrderPizza' element={<App />} />
+      <Route path='/' element={<App />} />
     </Routes>
   </BrowserRouter>
 );

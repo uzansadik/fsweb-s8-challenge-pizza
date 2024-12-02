@@ -4,7 +4,7 @@ import { Buttons } from '@testing-library/user-event/dist/cjs/system/pointer/but
 import { NavLink } from 'react-router';
 import PizzaLogo from '../components/PizzaLogo';
 
-export default function Home() {
+export default function Home({ handlePageChange }) {
   return (
     <div
       className='flex flex-col items-center w-screen h-screen bg-no-repeat bg-bottom-[-150px] bg-bottom  bg-red '
@@ -17,14 +17,14 @@ export default function Home() {
         <h1>KOD ACIKTIRIR</h1>
         <h1>PİZZA, DOYURUR</h1>
       </div>
-      <NavLink to='/OrderPizza' end>
-        <button
-          className='font-barlow  bg-yellow text-white text-lg font-semibold pl-16 pr-16 pt-3.5 pb-3.5 rounded-full mt-5
+      <button
+        onClick={handlePageChange}
+        name='order'
+        className='font-barlow  bg-yellow text-white text-lg font-semibold pl-16 pr-16 pt-3.5 pb-3.5 rounded-full mt-5
       '
-        >
-          ACIKTIM
-        </button>
-      </NavLink>
+      >
+        ACIKTIM
+      </button>
     </div>
   );
 }
