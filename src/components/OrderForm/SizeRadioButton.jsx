@@ -18,7 +18,7 @@ export default function SizeRadioButton({
         checked={formData.size === id}
       />
       <label className='pl-1' htmlFor={id}>
-        {text} {plus !== 0 && `+${plus}TL`}
+        {text}
       </label>
     </div>
   );

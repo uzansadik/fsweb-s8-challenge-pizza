@@ -63,20 +63,21 @@ Proje iki zorluk aşamalı,
 
 - [ ] 1. **Create Repo From Template & Clone:**
 
-   - Sağ üstteki yeşil "Use this template" butonu ile, bir kopya oluşturun. işlemi tamamlandıktan sonra, kendi GitHub hesabınızda yer alan depo bağlantısını kopyalayın.
-   - VS Code'u açın ve terminali başlatın. Aşağıdaki komutu kullanarak depoyu bilgisayarınıza klonlayın:
-     ```sh
-     git clone <Yeni-Repo-URL'niz>
-     ```
-   - Örnek:
-     ```sh
-     git clone https://github.com/sizin-hesabiniz/fsweb-s7-challenge-pizza
-     ```
+  - Sağ üstteki yeşil "Use this template" butonu ile, bir kopya oluşturun. işlemi tamamlandıktan sonra, kendi GitHub hesabınızda yer alan depo bağlantısını kopyalayın.
+  - VS Code'u açın ve terminali başlatın. Aşağıdaki komutu kullanarak depoyu bilgisayarınıza klonlayın:
+    ```sh
+    git clone <Yeni-Repo-URL'niz>
+    ```
+  - Örnek:
+    ```sh
+    git clone https://github.com/sizin-hesabiniz/fsweb-s7-challenge-pizza
+    ```
 
 2. **VS Code'da Geliştirmeye Başlamak:**
    - VS Code'u açın ve `File -> Open Folder` seçeneğiyle projeyi açın.
 
 - Terminalde aşağıdaki komutları sırasıyla çalıştırarak proje bağımlılıklarını yükleyin ve projeyi başlatın:
+
   ```sh
   npm install
   npm run dev
@@ -85,6 +86,7 @@ Proje iki zorluk aşamalı,
 - [ ] Yeni reponuzu bilgisayarınıza klonlayın
 
 3. **Geliştirmeye Başlayın** 🤓 👩‍💻 🧑‍💻
+
 - [ ] Main branch üzerinde çalışın
 - [ ] Comitinizi pushlayın: `git push origin main`
 - [ ] Farklı paketler kullanmaya çalışın.
@@ -130,7 +132,18 @@ IT1 aşamasına getirdiğiniz (minimum viable product), aşağıdaki gereksiniml
 - [ ] Pizza boyutunun seçilebileceği bir radio
 - [ ] Notlar için ek bir text area
 - [ ] "Sipariş Ver" butonuna tıklandığında, sanki bir sunucuya veri gönderip, yanıt almış gibi davranmalı. Formda eksik bilgi veya hata varsa form disabled olmalı. (hem html hem submit fonksiyonundan gönderim engellenmeli)
-- [ ] Submit edince, Axios ile API request sonrası console'a gelen yanıtı basmalısın. [https://reqres.in/api/pizza](https://reqres.in/api/pizza) ücretsiz bir mock api servisine, `axios` ile POST ile kendi datanızı attığınızda, size sanki veritabanına kaydedilmiş gibi id ve tarih ekleyip aynı veriyi geri döner. (SONRASINDA GET ATMIYORUZ)
+- [ ] Submit edince, Axios ile API request sonrası console'a gelen yanıtı basmalısın. [const functionThatReturnPromise = () => new Promise(resolve => setTimeout(resolve, 3000));
+      toast.promise(
+      functionThatReturnPromise,
+      {
+      pending: 'Promise is pending',
+      success: 'Promise resolved 👌',
+      error: 'Promise rejected 🤯'
+      }
+      )
+
+](https://reqres.in/api/pizza) ücretsiz bir mock api servisine, `axios` ile POST ile kendi datanızı attığınızda, size sanki veritabanına kaydedilmiş gibi id ve tarih ekleyip aynı veriyi geri döner. (SONRASINDA GET ATMIYORUZ)
+
 - [ ] Bu yanıtı gelen response'u, sipariş özeti console'a yazmalı.
 
 Not - Form'un payloadu, veri **örnek olarak** şu şekilde olabilir. **Kendiniz de bu yapıyı değiştirebilirsiniz.**
@@ -190,7 +203,7 @@ IT1'i bitirdikten sonra çalışmanı daha da ileri götürebilirsin. Buradaki h
   - [ ] Sipariş POST edilirken bir ağ hatası olasılığı için kullanıcıya geribildirim verebilmelisin (örnek: İnternet'e bağlanılamadı)
 - [ ] Tasarım Güncellemesi: **Anasayfa** çok daha çeşitli tasarım öğeleriyle zenginleştir.
 - [ ] Tasarım Güncellemesi: **Sipariş** Form elemanlarını (inputlar), özel renk ve tasarım diline göre güncelle
-- [ ] Cypressle daha çok test yaz. 
+- [ ] Cypressle daha çok test yaz.
 
 İpucu: Özelleştirilmiş Checkbox ve Radio için [W3 örneğine](https://www.w3schools.com/howto/howto_css_custom_checkbox.asp) bakabilirsiniz.
 İpucu: Sayfalar arası veri taşırken, (sipariş formundan, sonuş sayfasına), router veya başka bir global state management aracı kullanmadan, sadece [Prop-Lifting](https://react.dev/learn/sharing-state-between-components) tekniğiyle, projenizi geliştirmenizi bekliyoruz.

@@ -1,13 +1,13 @@
 import Home from './Pages/Home';
 import Header from './components/Header';
 import OrderForm from './components/OrderForm/OrderForm';
-import './App.css';
 import { useEffect, useState } from 'react';
 import CustomToastContainer from './components/Toast/CustomToastContainer';
-import { toast, ToastContainer } from 'react-toastify';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { toast } from 'react-toastify';
 import OrderCompleted from './Pages/OrderCompleted';
 import { formToJSON } from 'axios';
+import axios from 'axios';
+import { validateForm } from './validateForm.js';
 
 const initialData = {
   title: 'Position Absolute Acı Pizza',
@@ -42,6 +42,7 @@ const initialData = {
 };
 
 const initialFormData = {
+  nameSurname: '',
   name: initialData.title,
   price: initialData.price,
   quantity: 2,
@@ -56,7 +57,9 @@ function App() {
   const [pageInfo, setPageInfo] = useState(initialData);
   const [page, setPage] = useState('home');
   const [formData, setFormData] = useState(initialFormData);
-  const [err, setErr] = useState([]);
+  const [errors, setErrors] = useState({});
+  const [isTouched, setIsTouched] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
   const handlePageChange = (event) => {
     if (event.target.name === 'order') {
@@ -67,14 +70,16 @@ function App() {
 
   function handleChange(event) {
     const { type, name, value, id } = event.target;
-    console.log(type, name, value, id);
+
+    if (type === 'text' && name === 'nameSurname') {
+      setFormData({ ...formData, [name]: value });
+    }
 
     if (type === 'radio') {
-      setFormData({ ...formData, [name]: id });
+      setFormData({ ...formData, [name]: value });
     }
     if (type === 'select-one') {
       if (value === '') {
-        console.log('Seçim yok error ekle.');
       }
       setFormData({ ...formData, thickness: value });
     }
@@ -97,8 +102,8 @@ function App() {
       setFormData({ ...formData, quantity: formData.quantity + 1 });
     }
     if (type === 'button' && name === 'decrease') {
-      console.log('azaltcam');
       setFormData({ ...formData, quantity: formData.quantity - 1 });
+      console.log(formData.quantity);
     }
     if (type === 'textarea' && name === 'orderNote') {
       setFormData({ ...formData, note: value });
@@ -109,13 +114,55 @@ function App() {
   }
 
   useEffect(() => {
-    if (formData.quantity <= 0) {
-      setFormData({ ...formData, quantity: 1 });
+    if (isTouched) {
+      setErrors(validateForm(formData));
+      if (errors === 'null') {
+        setIsValid(true);
+      }
+    } else {
+      setIsTouched(true);
     }
+    //console.log(errors);
   }, [formData]);
 
+  useEffect(() => {
+    if (errors.count === 0) {
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+  }, [errors]);
+
   function handleSubmit(event) {
-    console.log(formData);
+    event.preventDefault();
+    const notification = toast.loading(
+      'Siparişiniz alınıyor. Lütfen bekleyin ...'
+    );
+    return axios
+      .post('https://reqres.in/api/pizza', formData)
+      .then((res) => {
+        console.log(res.data);
+        toast.update(notification, {
+          render: `${res.data.id} numaralı sipariş başarıyla oluşturuldu`,
+          type: 'success',
+          isLoading: true,
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+        });
+
+        if (res.status === 201) {
+          setPage('ordered');
+        }
+      })
+      .catch((err) => {
+        toast.update(notification, {
+          render: `Hata oluştu. En kısa zamanda tekrar sipariş verin.. [${err.message}]`,
+          type: 'error',
+          isLoading: false,
+          closeOnClick: true,
+        });
+      });
   }
 
   return (
@@ -127,12 +174,16 @@ function App() {
       )}
       {page === 'order' && (
         <OrderForm
+          isValid={isValid}
+          errors={errors}
           formData={formData}
           pageInfo={pageInfo}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
         />
       )}
+
+      {page === 'ordered' && <OrderCompleted />}
     </>
   );
 }
