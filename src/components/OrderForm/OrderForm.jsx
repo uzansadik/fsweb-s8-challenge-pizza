@@ -82,10 +82,14 @@ function OrderForm({
           <div className='flex flex-col mt-10 gap-4'>
             <p className='text-2xl font-semibold'>İsim</p>
             {errors.nameSurname && (
-              <p className='text-red'> {errors.nameSurname} </p>
+              <p data-test-cy='error-nameSurname' className='text-red'>
+                {' '}
+                {errors.nameSurname}{' '}
+              </p>
             )}
 
             <input
+              data-test-cy='input-nameSurname'
               type='text
           '
               className='p-4 w-full opacity-100 border-[1px] border-lightGrey text-darkGrey rounded-md focus:border-2
@@ -119,7 +123,10 @@ function OrderForm({
             <p className='text-2xl font-semibold'>Sipariş Toplamı</p>
             <div className='flex justify-between'>
               <p className='text-xl font-semibold text-lightGrey'>Seçimler</p>
-              <p className='text-xl font-semibold text-lightGrey'>
+              <p
+                data-test-cy='price'
+                className='text-xl font-semibold text-lightGrey'
+              >
                 {formData.extraPrice} ₺
               </p>
             </div>
@@ -162,6 +169,7 @@ function OrderForm({
             </div>
             <div className='flex gap-0 w-[200px]'>
               <button
+                data-test-cy='siparis'
                 disabled={!isValid}
                 type='submit'
                 className='w-[200px] h-14 border-[1px] border-yellow bg-yellow rounded-r-md '

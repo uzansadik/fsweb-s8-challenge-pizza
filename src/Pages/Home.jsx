@@ -18,6 +18,7 @@ export default function Home({ handlePageChange }) {
         <h1>PİZZA, DOYURUR</h1>
       </div>
       <button
+        data-test-cy='home-button'
         onClick={handlePageChange}
         name='order'
         className='font-barlow  bg-yellow text-white text-lg font-semibold pl-16 pr-16 pt-3.5 pb-3.5 rounded-full mt-5

@@ -54,7 +54,7 @@ const initialFormData = {
 };
 
 function App() {
-  const [pageInfo, setPageInfo] = useState(initialData);
+  const [pageInfo] = useState(initialData);
   const [page, setPage] = useState('home');
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState({});

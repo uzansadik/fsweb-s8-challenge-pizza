@@ -10,6 +10,7 @@ export default function SizeRadioButton({
   return (
     <div className='pb-1'>
       <input
+        data-test-cy='boyut'
         id={id}
         type='radio'
         name='size'
