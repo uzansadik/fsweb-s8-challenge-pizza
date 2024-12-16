@@ -8,9 +8,11 @@ export default {
         satisfy: 'Satisfy, serif',
         quattrocento: 'Quattrocento, serif',
         barlow: 'Barlow,serif',
+        Londrina: 'Londrina Solid, sans-serif',
       },
     },
     colors: {
+      black: '#1A1A1A',
       red: '#CE2829',
       white: '#FFFFFF',
       yellow: '#FDC913',
